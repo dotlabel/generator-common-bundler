@@ -3,8 +3,9 @@
 
 > Scaffold for building multiple JS bundles with a common core
 
-```
-npm run build
-npm run watch
-npm test
+```sh
+npm i -g yo
+npm i -g generator-common-bundler
+
+yo common-bundler
 ```
