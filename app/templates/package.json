@@ -15,9 +15,9 @@
     "make:styles": "ho compile -e src/styles.less -o dist/styles.css -p src:node_modules:src/common/styles:src/bundles -c package.json",
     "watch:styles": "ho watch -d -w 'src/**/*.less' -e src/styles.less -o dist/styles.css -p src:node_modules:src/common/styles:src/bundles -c .hodevrc",
 
-    "build:scripts": "bundler src/bundles -d -t flowcheck -t babelify -o dist -c package.json",
+    "build:scripts": "bundler src/bundles -d -t babelify -t flowcheck -o dist -c package.json",
     "make:scripts": "NODE_ENV=prod bundler src/bundles -t babelify -o dist -c package.json",
-    "watch:scripts": "bundler src/bundles --watch 'src/**/.js*'' -d -t flowcheck -t babelify -o dist -c package.json",
+    "watch:scripts": "bundler src/bundles --watch 'src/**/*.js*' -d -t babelify -t flowcheck -o dist -c package.json",
 
     "make:polyfill": "browserify src/polyfill.js -t babelify | uglifyjs > dist/polyfill.js",
     "make:assets": "cp -r src/assets dist/assets",
@@ -94,6 +94,8 @@
     "eslint": "^0.24.0",
     "flowcheck": "^0.2.7",
     "ho": "^1.1.1",
+    "parallelshell": "^1.2.0",
+    "serveur": "^1.1.4",
     "uglifyjs": "^2.4.10"
   }
 }
