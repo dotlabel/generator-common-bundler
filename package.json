@@ -1,6 +1,6 @@
 {
   "name": "generator-common-bundler",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Scaffold for building multiple JS bundles with a common core",
   "scripts": {
     "prepublish": "npm run build",
