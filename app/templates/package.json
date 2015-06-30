@@ -1,6 +1,7 @@
 {
   "name": "{{ projectName }}",
   "version": "0.0.0",
+  "private": true,
   "description": "{{ projectDescription }}",
   "scripts": {
     "prepack": "npm run make",
@@ -9,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "serveur -cJS -o ./dist",
     "livereload": "serveur -cJS -o -R ./dist",
-    "watch": "parallelshell 'npm run livereload' 'npm run watch:styles' 'npm run watch:scripts'",
+    "watch": "parallelshell 'npm run watch:styles' 'npm run watch:scripts'",
 
     "build:styles": "ho compile -d -e src/styles.less -o dist/styles.css -p src:node_modules:src/common/styles:src/bundles -c .hodevrc",
     "make:styles": "ho compile -e src/styles.less -o dist/styles.css -p src:node_modules:src/common/styles:src/bundles -c package.json",
