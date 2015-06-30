@@ -5,32 +5,32 @@
   "scripts": {
     "prepack": "npm run make",
     "clean": "rm -rf ./dist/ && mkdir ./dist",
-    "lint": "eslint ./src/",
+    "lint": "eslint src/",
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "serveur -cJS -o ./dist",
     "livereload": "serveur -cJS -o -R ./dist",
-    "watch": "parallelshell 'npm run livereload' 'npm run watch:styles' 'npm run watch:scripts' 'npm run watch:html'",
-    "build:styles": "ho-compile -p src,node_modules,src/common/styles,src/bundles --source-map < ./src/styles.less | autoprefixer -b \"last 2 versions\" > ./dist/styles.css",
-    "make:styles": "ho-compile -p src,node_modules,src/common/styles,src/bundles -c < ./src/styles.less | autoprefixer -b \"last 2 versions \" > ./dist/styles.css",
-    "watch:styles": "find src -name '*.less' -print0 | xargs -0 ./bin/lesswatch -e src/styles.less -o ./dist/styles.css",
-    "build:scripts": "./bin/bundler ./src/bundles -d --skip react --remap react:react/dist/react -o ./dist -t flowcheck -t babelify",
-    "make:scripts": "NODE_ENV=prod ./bin/bundler ./src/bundles --skip react --remap react:react/dist/react -o ./dist -t babelify",
-    "watch:scripts": "find src -name '*.js*' -print0 | xargs -0 ./bin/scriptwatch",
-    "make:polyfill": "browserify ./src/polyfill.js -t babelify | uglifyjs > ./dist/polyfill.js",
-    "make:assets": "cp -r ./src/assets ./dist/assets",
-    "make:html": "./bin/tmpl src/views/*.hjs -d package.json -o ./dist -- -v src/bundles/**/*.hjs",
-    "watch:html": "watch 'npm run make:html' ./src/views",
+    "watch": "parallelshell 'npm run livereload' 'npm run watch:styles' 'npm run watch:scripts'",
+
+    "build:styles": "ho compile -d -e src/styles.less -o dist/styles.css -p src:node_modules:src/common/styles:src/bundles -c .hodevrc",
+    "make:styles": "ho compile -e src/styles.less -o dist/styles.css -p src:node_modules:src/common/styles:src/bundles -c package.json",
+    "watch:styles": "ho watch -d -w 'src/**/*.less' -e src/styles.less -o dist/styles.css -p src:node_modules:src/common/styles:src/bundles -c .hodevrc",
+
+    "build:scripts": "bundler src/bundles -d -t flowcheck -t babelify -o dist -c package.json",
+    "make:scripts": "NODE_ENV=prod bundler src/bundles -t babelify -o dist -c package.json",
+    "watch:scripts": "bundler src/bundles --watch 'src/**/.js*'' -d -t flowcheck -t babelify -o dist -c package.json",
+
+    "make:polyfill": "browserify src/polyfill.js -t babelify | uglifyjs > dist/polyfill.js",
+    "make:assets": "cp -r src/assets dist/assets",
+
     "prebuild": "npm run clean",
-    "build": "npm run make:assets && npm run make:html && npm run make:polyfill && npm run build:scripts && npm run build:styles",
+    "build": "npm run make:assets && npm run make:polyfill && npm run build:scripts && npm run build:styles",
     "premake": "npm run clean",
-    "make": "NODE_ENV=prod npm run make:assets && npm run make:html && npm run make:polyfill && npm run make:scripts && npm run make:styles",
-    "common:bundler": "bundler src/bundles -t babelify -o dist --verbose -c package.json -d",
-    "common:styles": "ho compile -e src/styles.less -o dist/styles.css -p src:node_modules:src/common/styles:src/bundles -c package.json"
+    "make": "NODE_ENV=prod npm run make:assets && npm run make:polyfill && npm run make:scripts && npm run make:styles"
   },
   "ho": {
     "autoprefixer-transform": {
       "browsers": [
-        "last 4 versions"
+        "last 3 versions"
       ]
     },
     "cleancss-transform": {
@@ -42,7 +42,7 @@
       "src",
       "node_modules",
       "src/common",
-      "src/bundles"    
+      "src/bundles"
     ],
     "extensions": [
       ".js",
@@ -88,10 +88,12 @@
     "autoprefixer-transform": "^0.3.1",
     "babel-eslint": "^3.1.20",
     "babelify": "^6.1.2",
+    "browserify": "^10.2.4",
     "cleancss-transform": "^0.1.0",
     "common-bundler": "^0.3.0",
     "eslint": "^0.24.0",
     "flowcheck": "^0.2.7",
-    "ho": "^1.1.1"
+    "ho": "^1.1.1",
+    "uglifyjs": "^2.4.10"
   }
 }
