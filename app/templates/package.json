@@ -93,7 +93,7 @@
     "common-bundler": "^0.3.0",
     "eslint": "^0.24.0",
     "flowcheck": "^0.2.7",
-    "ho": "^1.1.1",
+    "ho": "^1.1.2",
     "parallelshell": "^1.2.0",
     "serveur": "^1.1.4",
     "uglifyjs": "^2.4.10"
