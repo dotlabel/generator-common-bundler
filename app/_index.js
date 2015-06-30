@@ -66,7 +66,7 @@ export default class CommonGenerator extends Base {
             return done()
         }
 
-        this.prompt( UrbanGenerator.prompts, props => {
+        this.prompt( CommonGenerator.prompts, props => {
             this.props = props
             done()
         })
