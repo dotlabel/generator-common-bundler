@@ -14,7 +14,7 @@ export default class BundleB extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="BundleB">
                 <h2>Bundle B</h2>
                 <MyButton onClick={ this.onClick }></MyButton>
             </div>

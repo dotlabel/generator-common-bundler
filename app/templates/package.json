@@ -1,5 +1,5 @@
 {
-  "name": "projectName",
+  "name": "{{ projectName }}",
   "version": "0.0.0",
   "description": "{{ projectDescription }}",
   "scripts": {
@@ -34,11 +34,16 @@
       ]
     },
     "cleancss-transform": {
-      "compatibility": "ie8",
-      "keepBreaks": true
+      "compatibility": "ie9"
     }
   },
   "bundler": {
+    "paths": [
+      "src",
+      "node_modules",
+      "src/common",
+      "src/bundles"    
+    ],
     "extensions": [
       ".js",
       ".jsx"
@@ -80,9 +85,13 @@
     "whatwg-fetch": "^0.9.0"
   },
   "devDependencies": {
+    "autoprefixer-transform": "^0.3.1",
     "babel-eslint": "^3.1.20",
+    "babelify": "^6.1.2",
+    "cleancss-transform": "^0.1.0",
     "common-bundler": "^0.3.0",
     "eslint": "^0.24.0",
+    "flowcheck": "^0.2.7",
     "ho": "^1.1.1"
   }
 }

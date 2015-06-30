@@ -20,7 +20,7 @@ export default class MyButton extends React.Component {
 
     render() {
         return (
-            <button className="MyButton">
+            <button className="MyButton" onClick={ this.props.onClick }>
                 <span className="MyButton-icon">λ</span>
                 { this.props.text }
             </button>
