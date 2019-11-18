@@ -92,7 +92,7 @@
     "browserify": "^10.2.4",
     "cleancss-transform": "^0.1.0",
     "common-bundler": "^0.3.0",
-    "eslint": "^0.24.0",
+    "eslint": "^6.6.0",
     "flowcheck": "^0.2.7",
     "ho": "^1.1.2",
     "parallelshell": "^1.2.0",
