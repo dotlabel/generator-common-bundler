@@ -79,7 +79,7 @@
     "flux": "^2.0.3",
     "immutable": "^3.7.4",
     "normalize.css": "^3.0.3",
-    "react": "^0.13.3",
+    "react": "^16.13.1",
     "rx": "^2.5.3",
     "superagent": "^1.2.0",
     "webfontloader": "^1.6.3",
